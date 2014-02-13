@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dip" >
+
+    <Button
+        android:id="@+id/ButtonLoginWithFacebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onLoginWithFacebook"
+        android:text="@string/login_with_facebook_account" />
+
+    <Button
+        android:id="@+id/ButtonLinkFacebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onLinkFacebook"
+        android:text="@string/linking_a_kii_account_to_a_facebook_account" />
+
+    <Button
+        android:id="@+id/buttonUnlinkFacebook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onUnlinkFacebook"
+        android:text="@string/unlinking_a_kii_account_from_a_facebook_account" />
+
+    <Button
+        android:id="@+id/ButtonLoginWithTwitter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onLoginWithTwitter"
+        android:text="@string/login_with_twitter_account" />
+
+    <Button
+        android:id="@+id/buttonLinkTwitter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onLinkTwitter"
+        android:text="@string/linking_a_kii_account_to_a_twitter_account" />
+
+    <Button
+        android:id="@+id/ButtonUnlinkTwitter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onUnlinkTwitter"
+        android:text="@string/unlinking_a_kii_account_from_a_twitter_account" />
+
+</LinearLayout>

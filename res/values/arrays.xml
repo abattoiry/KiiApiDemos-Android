@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="kii_components">
+        <item>User management</item>
+        <item>Object storage (Notepad sample)</item>
+        <item>File storage</item>
+        <item>Geolocation data</item>
+        <item>Flex Analytics</item>
+        <item>Server Extension</item>
+    </string-array>
+
+    <array name="kii_components_ids">
+        <item>@id/cate_user_management</item>
+        <item>@id/cate_object_storage</item>
+        <item>@id/cate_file_storage</item>
+        <item>@id/cate_geolocation</item>
+        <item>@id/cate_flex_analytics</item>
+        <item>@id/cate_server_extension</item>
+    </array>
+
+    <string-array name="cate_user_management">
+        <item>@string/simple_sign_up_in_title</item>
+        <item>@string/sign_up</item>
+        <item>@string/sign_in</item>
+        <item>@string/user_attributes</item>
+        <item>@string/logout_delete_title</item>
+        <item>@string/social_network_integration_title</item>
+    </string-array>
+
+    <array name="cate_user_management_ids">
+        <item>@id/simple_sign_up_in</item>
+        <item>@id/sign_up</item>
+        <item>@id/sign_in</item>
+        <item>@id/user_attributes</item>
+        <item>@id/delete_user</item>
+        <item>@id/social_network_integration</item>
+    </array>
+
+    <string-array name="cate_geolocation">
+        <item>@string/add_geopoint</item>
+        <item>@string/query_pois_by_geobox</item>
+        <item>@string/query_pois_by_geodistance</item>
+    </string-array>
+
+    <array name="cate_geolocation_ids">
+        <item>@id/add_geopoint</item>
+        <item>@id/query_pois_by_geobox</item>
+        <item>@id/query_pois_by_geodistance</item>
+    </array>
+
+    <string-array name="cate_file_storage">
+        <item>@string/title_activity_uploading_files</item>
+        <item>@string/title_activity_downloading_files</item>
+        <item>@string/title_activity_publishing_files</item>
+    </string-array>
+
+    <array name="cate_file_storage_ids">
+        <item>@id/uploading_files</item>
+        <item>@id/downloading_files</item>
+        <item>@id/publishing_files</item>
+    </array>
+
+    <string-array name="country_names">
+        <item>USA</item>
+        <item>Japan</item>
+        <item>China</item>
+        <item>HongKong</item>
+        <item>Taiwan</item>
+    </string-array>
+    <string-array name="country_codes">
+        <item>US</item>
+        <item>JP</item>
+        <item>CN</item>
+        <item>HK</item>
+        <item>TW</item>
+    </string-array>
+    <string-array name="gender">
+        <item>-</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+</resources>

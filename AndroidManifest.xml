@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kii.api_demos"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- add by alex 20131202 end -->
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.kii.api_demos.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.kii.api_demos.ShowCodeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kii.api_demos.user_management.SignUpActivity"
+            android:label="@string/sign_up"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kii.api_demos.user_management.SignInActivity"
+            android:label="@string/sign_in"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kii.api_demos.user_management.LogoutDeleteActivity"
+            android:label="@string/logout_delete_title"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kii.api_demos.user_management.SimpleSignUpInActivity"
+            android:label="@string/simple_sign_up_in_title"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kii.api_demos.user_management.UserAttributesActivity"
+            android:label="@string/user_attributes"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kii.api_demos.user_management.SocialNetworkIntegrationActivity"
+            android:label="@string/social_network_integration_title"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kii.api_demos.analytics.FlexAnalyticsActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kii.api_demos.geolocation.AddPOIActivity"
+            android:label="@string/add_geopoint"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kii.api_demos.geolocation.QueryByGeoBoxActivity"
+            android:label="@string/query_pois_by_geobox"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kii.api_demos.geolocation.QueryByGeoDistanceActivity"
+            android:label="@string/query_pois_by_geodistance"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kii.api_demos.file_storage.DownloadingFilesActivity"
+            android:label="@string/title_activity_downloading_files"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kii.api_demos.file_storage.FileBrowserActivity"
+            android:label="@string/title_activity_file_browser"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kii.api_demos.file_storage.PublishingFilesActivity"
+            android:label="@string/title_activity_publishing_files"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kii.api_demos.file_storage.UploadingFilesActivity"
+            android:label="@string/title_activity_uploading_files"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kii.api_demos.syncing_folder.SyncingFolderActivity"
+            android:label="@string/title_activity_syncing_folder"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kii.api_demos.object_storage.NotesList"
+            android:label="@string/noteslist_title"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kii.api_demos.object_storage.NoteEditor"
+            android:label="@string/new_note"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

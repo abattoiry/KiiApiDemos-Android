@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="cate_user_management" type="id"/>
+    <item name="cate_group_management" type="id"/>
+    <item name="cate_object_storage" type="id"/>
+    <item name="cate_file_storage" type="id"/>
+    <item name="cate_geolocation" type="id"/>
+    <item name="cate_flex_analytics" type="id"/>
+    <item name="cate_server_extension" type="id"/>
+    <item name="simple_sign_up_in" type="id"/>
+    <item name="sign_up" type="id"/>
+    <item name="sign_in" type="id"/>
+    <item name="user_attributes" type="id"/>
+    <item name="social_network_integration" type="id"/>
+    <item name="retrieving_others_data" type="id"/>
+    <item name="delete_user" type="id"/>
+    <item name="group_management" type="id"/>
+    <item name="add_geopoint" type="id"/>
+    <item name="query_pois_by_geobox" type="id"/>
+    <item name="query_pois_by_geodistance" type="id"/>
+    <item name="uploading_files" type="id"/>
+    <item name="downloading_files" type="id"/>
+    <item name="publishing_files" type="id"/>
+
+</resources>
