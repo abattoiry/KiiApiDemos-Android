@@ -8,6 +8,8 @@ public class Constants {
     public static final String KII_APP_KEY = "bbabd43176c6681e7dca576eedbc776d";
     public static final Site KII_SITE = Site.CN;
 
+    
+    public static final String FILE_BUCKET = "files";
     public static final String GEOLOCATION_BUCKET = "location";
     public static final String GEOLOCATION_TITLE = "title";
     public static final String GEOLOCATION_POI = "poi";

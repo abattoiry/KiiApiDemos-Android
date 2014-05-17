@@ -59,9 +59,9 @@
     <string name="title_activity_file_storage">File Storage</string>
     <string name="title_activity_downloading_files">Downloading Files</string>
     <string name="title_activity_file_browser">File Browser</string>
-    <string name="title_activity_publishing_files">Pbulishing Files</string>
-    <string name="title_activity_uploading_files">Uploading Files</string>
-    <string name="title_activity_syncing_folder">Syncing Folder</string>
+    <string name="title_activity_publishing_files">Publish Files</string>
+    <string name="title_activity_uploading_files">Upload Files</string>
+    <string name="title_activity_syncing_folder">Sync Folder</string>
     <string name="start_syncing">Start syncing</string>
     <string name="changing_sync_folder">Changing sync folder</string>
     <string name="uploading_a_file_with_resumable_transfer">Uploading a file with resumable transfer</string>
