@@ -10,6 +10,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.TypedArray;
 
+import com.kii.api_demos.abtests.ABTestsActivity;
 import com.kii.api_demos.analytics.FlexAnalyticsActivity;
 import com.kii.api_demos.file_storage.DownloadingFilesActivity;
 import com.kii.api_demos.file_storage.PublishingFilesActivity;
@@ -24,6 +25,7 @@ import com.kii.api_demos.user_management.SignUpActivity;
 import com.kii.api_demos.user_management.SimpleSignUpInActivity;
 import com.kii.api_demos.user_management.SocialNetworkIntegrationActivity;
 import com.kii.api_demos.user_management.UserAttributesActivity;
+import com.kii.cloud.analytics.KiiAnalytics;
 import com.kii.cloud.storage.Kii;
 
 /**
@@ -45,6 +47,8 @@ public class MainActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        KiiAnalytics.initialize(this, Constants.KII_APP_ID, Constants.KII_APP_KEY,
+                Constants.KII_ANALYTICS_SITE);
         cate = getIntent().getIntExtra(EXTRA_CATE, 0);
         String title = getIntent().getStringExtra(EXTRA_TITLE);
         if (!TextUtils.isEmpty(title)) {
@@ -97,6 +101,9 @@ public class MainActivity extends ListActivity {
                 break;
             case R.id.cate_object_storage:
                 intent = new Intent(this, NotesList.class);
+                break;
+            case R.id.cate_abtests:
+                intent = new Intent(this, ABTestsActivity.class);
                 break;
             case R.id.sign_up:
                 intent = new Intent(this, SignUpActivity.class);

@@ -8,6 +8,7 @@
     <item name="cate_geolocation" type="id"/>
     <item name="cate_flex_analytics" type="id"/>
     <item name="cate_server_extension" type="id"/>
+    <item name="cate_abtests" type="id"/>
     <item name="simple_sign_up_in" type="id"/>
     <item name="sign_up" type="id"/>
     <item name="sign_in" type="id"/>

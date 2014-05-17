@@ -7,6 +7,7 @@
         <item>File storage</item>
         <item>Geolocation data</item>
         <item>Flex Analytics</item>
+        <item>A/B Tests</item>
         <item>Server Extension</item>
     </string-array>
 
@@ -16,6 +17,7 @@
         <item>@id/cate_file_storage</item>
         <item>@id/cate_geolocation</item>
         <item>@id/cate_flex_analytics</item>
+        <item>@id/cate_abtests</item>
         <item>@id/cate_server_extension</item>
     </array>
 
