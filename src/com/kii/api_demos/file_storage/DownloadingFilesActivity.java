@@ -11,7 +11,6 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -174,8 +173,8 @@ public class DownloadingFilesActivity extends Activity {
                 mHolder.status.setTextColor(android.graphics.Color.BLACK);
                 mHolder.status.setTypeface(Typeface.DEFAULT_BOLD, Typeface.NORMAL);
                 mHolder.progress.setVisibility(View.GONE);
-                mHolder.title.setText(mDownloaderObj.kiiFile.getString("title"));
-                mHolder.status.setText(String.valueOf(mDownloaderObj.kiiFile.getLong("fileSize")));
+                mHolder.title.setText(mDownloaderObj.kiiFile.getString("title", " "));
+                mHolder.status.setText(String.valueOf(mDownloaderObj.kiiFile.getLong("fileSize", 0)));
             }
             else {
                 mHolder.title.setTextColor(android.graphics.Color.BLACK);
@@ -315,12 +314,7 @@ public class DownloadingFilesActivity extends Activity {
         KiiDownloader mDownloader = null;
         String title;
 
-        if (!TextUtils.isEmpty(o.kiiFile.getString("title"))) {
-            title = o.kiiFile.getString("title");
-        }
-        else {
-            title = getString(R.string.default_title);
-        }
+        title = o.kiiFile.getString("title", getString(R.string.default_title));
         try {
             mDownloader = o.kiiFile.downloader(getApplicationContext(),
                     new File(mTextViewCurrentPath.getText().toString(), title));
