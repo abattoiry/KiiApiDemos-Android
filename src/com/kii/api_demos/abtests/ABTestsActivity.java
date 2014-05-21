@@ -1,7 +1,9 @@
 
 package com.kii.api_demos.abtests;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -85,13 +87,18 @@ public class ABTestsActivity extends FragmentActivity implements OnClickListener
                 button.setBackgroundColor(Color.GREEN);
             }
             button.setText(buttonLabel);
-            if (va != null) {
-                KiiEvent viewEvent = va.eventForConversion(getApplicationContext(),
-                        "eventViewed");
-                try {
-                    viewEvent.push();
-                } catch (IOException e) {
-                }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (va != null) {
+            KiiEvent viewEvent = va.eventForConversion(getApplicationContext(),
+                    "eventViewed");
+            try {
+                viewEvent.push();
+            } catch (IOException e) {
             }
         }
     }
@@ -108,6 +115,9 @@ public class ABTestsActivity extends FragmentActivity implements OnClickListener
                     } catch (IOException e) {
                     }
                 }
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://documentation.kii.com/en/guides/ab-testing/"));
+                startActivity(intent);
             }
                 break;
         }
