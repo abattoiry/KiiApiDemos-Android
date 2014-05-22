@@ -54,7 +54,7 @@ public class ABTestsActivity extends FragmentActivity implements OnClickListener
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                experiment = KiiExperiment.getByID("165b4dd0-ddad-11e3-814c-90b8d0467bc7");
+                experiment = KiiExperiment.getByID("5cb0b720-e0be-11e3-ac8a-90b8d0235395");
                 va = experiment.getVariationByName("A");
                 va = experiment.getAppliedVariation();
             } catch (AppException e) {
