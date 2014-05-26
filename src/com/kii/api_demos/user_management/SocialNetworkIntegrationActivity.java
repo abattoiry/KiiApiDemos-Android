@@ -3,6 +3,7 @@ package com.kii.api_demos.user_management;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -192,6 +193,7 @@ public class SocialNetworkIntegrationActivity extends Activity {
                 } 
                 else {
                     // Failure. handle error.
+                    exception.printStackTrace();
                     Toast.makeText(SocialNetworkIntegrationActivity.this, R.string.link_failed, 
                     	    Toast.LENGTH_SHORT).show();
                 }
