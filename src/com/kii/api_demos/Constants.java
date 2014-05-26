@@ -9,11 +9,14 @@ public class Constants {
 //    public static final String              KII_APP_KEY = "bbabd43176c6681e7dca576eedbc776d";
 //    public static final Site                KII_SITE = Site.CN;
 //    public static final KiiAnalytics.Site   KII_ANALYTICS_SITE = KiiAnalytics.Site.CN;
+//    public static final String              ABTestingID = "5cb0b720-e0be-11e3-ac8a-90b8d0235395";
+
     // USA Server
     public static final String              KII_APP_ID = "9ab79441";
     public static final String              KII_APP_KEY = "21ed90644560656412620e9107acce5f";
     public static final Site                KII_SITE = Site.US;
     public static final KiiAnalytics.Site   KII_ANALYTICS_SITE = KiiAnalytics.Site.US;
+    public static final String              ABTestingID = "2fecb240-e4bd-11e3-a798-22000ad90d5b";
 
     public static final String  FILE_BUCKET = "files";
     public static final String  GEOLOCATION_BUCKET = "location";

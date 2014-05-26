@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.kii.api_demos.Constants;
 import com.kii.api_demos.ProgressDialogFragment;
 import com.kii.api_demos.R;
 import com.kii.api_demos.Utils;
@@ -54,7 +55,7 @@ public class ABTestsActivity extends FragmentActivity implements OnClickListener
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                experiment = KiiExperiment.getByID("5cb0b720-e0be-11e3-ac8a-90b8d0235395");
+                experiment = KiiExperiment.getByID(Constants.ABTestingID);
                 va = experiment.getVariationByName("A");
                 va = experiment.getAppliedVariation();
             } catch (AppException e) {
