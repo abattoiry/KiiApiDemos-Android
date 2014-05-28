@@ -3,7 +3,6 @@ package com.kii.api_demos.user_management;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
@@ -21,6 +20,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.kii.api_demos.AsyncTaskWithProgress;
 import com.kii.api_demos.ProgressDialogFragment;
 import com.kii.api_demos.R;
 import com.kii.api_demos.Utils;
@@ -62,7 +62,7 @@ public class SignInActivity extends FragmentActivity implements OnCheckedChangeL
         SharedPreferences prefs = getSharedPreferences(Utils.PREFS_NAME,
                 Context.MODE_PRIVATE);
         token = prefs.getString(Utils.KEY_TOEKN, "");
-        Log.d("Token",token);
+        Log.d("Token", token);
         updateInfoViews();
     }
 
@@ -109,16 +109,19 @@ public class SignInActivity extends FragmentActivity implements OnCheckedChangeL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_with_token:
-                new LoginWithTokenTask().execute();
+                new LoginWithTokenTask(this).execute();
                 break;
             case R.id.login:
-                new LoginTask().execute();
+                new LoginTask(this).execute();
                 break;
         }
     }
 
-    class LoginWithTokenTask extends AsyncTask<Void, Void, Void> {
-        ProgressDialogFragment dialog = null;
+    class LoginWithTokenTask extends AsyncTaskWithProgress {
+        public LoginWithTokenTask(FragmentActivity activity) {
+            super(activity);
+        }
+
         boolean succ = true;
 
         @Override
@@ -132,24 +135,19 @@ public class SignInActivity extends FragmentActivity implements OnCheckedChangeL
         }
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            dialog = ProgressDialogFragment.newInstance(getString(R.string.in_progressing));
-            dialog.show(getSupportFragmentManager(), "dialog");
-        }
-
-        @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            dialog.dismiss();
             Toast.makeText(SignInActivity.this, succ ? R.string.login_succ : R.string.login_failed,
                     Toast.LENGTH_SHORT).show();
             updateInfoViews();
         }
     }
 
-    class LoginTask extends AsyncTask<Void, Void, Void> {
-        ProgressDialogFragment dialog = null;
+    class LoginTask extends AsyncTaskWithProgress {
+        public LoginTask(FragmentActivity activity) {
+            super(activity);
+        }
+
         boolean succ = false;
 
         @Override
@@ -184,16 +182,8 @@ public class SignInActivity extends FragmentActivity implements OnCheckedChangeL
         }
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            dialog = ProgressDialogFragment.newInstance(getString(R.string.in_progressing));
-            dialog.show(getSupportFragmentManager(), "dialog");
-        }
-
-        @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            dialog.dismiss();
             updateInfoViews();
             Toast.makeText(SignInActivity.this, succ ? R.string.login_succ : R.string.login_failed,
                     Toast.LENGTH_SHORT).show();

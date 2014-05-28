@@ -122,7 +122,10 @@
             android:name="com.kii.api_demos.object_storage.NoteEditor"
             android:label="@string/new_note"
             android:screenOrientation="portrait" />
-
+		<activity
+            android:name="com.kii.api_demos.group_management.GroupManagementActivity"
+            android:label="@string/group_management"
+            android:screenOrientation="portrait" />
         <service android:name="com.kii.cloud.analytics.EventUploadService" />
     </application>
 

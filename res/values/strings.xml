@@ -158,5 +158,11 @@
     <string name="unlink_failed">Unlink failed</string>
     <string name="abtests_title">A/B Testing</string>
     <string name="abtests_des">Please refer to http://documentation.kii.com/en/guides/ab-testing/ for how to use A/B Testing.</string>
-    
+	<string name="group_management">Group Management</string>
+	<string name="create_group">Create a group</string>
+	<string name="or">or</string>
+	<string name="select_owned_group">Select an owned group</string>
+	<string name="add_to_group">Add to group</string>
+	<string name="choose_group">Choose group</string>
+	<string name="list_group_members">List group members</string>
 </resources>

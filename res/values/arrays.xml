@@ -3,6 +3,7 @@
 
     <string-array name="kii_components">
         <item>User management</item>
+        <item>Group management</item>
         <item>Object storage (Notepad sample)</item>
         <item>File storage</item>
         <item>Geolocation data</item>
@@ -13,6 +14,7 @@
 
     <array name="kii_components_ids">
         <item>@id/cate_user_management</item>
+        <item>@id/cate_group_management</item>
         <item>@id/cate_object_storage</item>
         <item>@id/cate_file_storage</item>
         <item>@id/cate_geolocation</item>
