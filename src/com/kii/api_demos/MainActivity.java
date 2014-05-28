@@ -26,7 +26,10 @@ import com.kii.api_demos.user_management.SimpleSignUpInActivity;
 import com.kii.api_demos.user_management.SocialNetworkIntegrationActivity;
 import com.kii.api_demos.user_management.UserAttributesActivity;
 import com.kii.cloud.analytics.KiiAnalytics;
+import com.kii.cloud.analytics.KiiEvent;
 import com.kii.cloud.storage.Kii;
+
+import java.io.IOException;
 
 /**
  * This activity shows the categories.
@@ -99,11 +102,23 @@ public class MainActivity extends ListActivity {
                 intent.putExtra(EXTRA_TITLE, title);
             }
                 break;
-            case R.id.cate_object_storage:
+            case R.id.cate_object_storage: {
+                KiiEvent event = KiiAnalytics.event("ClickOnNotepad");
+                try {
+                    event.push();
+                } catch (IOException e) {
+                }
                 intent = new Intent(this, NotesList.class);
+            }
                 break;
-            case R.id.cate_abtests:
+            case R.id.cate_abtests: {
+                KiiEvent event = KiiAnalytics.event("ClickOnABTest");
+                try {
+                    event.push();
+                } catch (IOException e) {
+                }
                 intent = new Intent(this, ABTestsActivity.class);
+            }
                 break;
             case R.id.sign_up:
                 intent = new Intent(this, SignUpActivity.class);
