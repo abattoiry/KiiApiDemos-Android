@@ -1,9 +1,12 @@
+
 package com.kii.api_demos.object_storage;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -68,11 +71,14 @@ public class NoteEditor extends Activity implements OnClickListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != Activity.RESULT_OK) { return; }
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
         switch (requestCode) {
             case Utils.TAKE_OR_CHOOSE_PHOTO:
                 bodyFile = Utils.getPhotoFromResult(this, data);
-                image.setImageDrawable(new BitmapDrawable(getResources(), bodyFile.getAbsolutePath()));
+                image.setImageDrawable(new BitmapDrawable(getResources(), bodyFile
+                        .getAbsolutePath()));
                 break;
         }
     }
@@ -84,7 +90,7 @@ public class NoteEditor extends Activity implements OnClickListener {
         uploadImage.setOnClickListener(this);
         downloadImage.setOnClickListener(this);
         deleteImage.setOnClickListener(this);
-        if(hasBody) {
+        if (hasBody) {
             downloadImage.setVisibility(View.INVISIBLE);
             deleteImage.setVisibility(View.VISIBLE);
             uploadImage.setText(R.string.update_image);
@@ -220,7 +226,8 @@ public class NoteEditor extends Activity implements OnClickListener {
             if (saveSuccess) {
                 Toast.makeText(NoteEditor.this, "Save successfully", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(NoteEditor.this, "Save failed, please try again later", Toast.LENGTH_LONG).show();
+                Toast.makeText(NoteEditor.this, "Save failed, please try again later",
+                        Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -259,7 +266,8 @@ public class NoteEditor extends Activity implements OnClickListener {
                 Toast.makeText(NoteEditor.this, "Deleted successfully", Toast.LENGTH_LONG).show();
                 finish();
             } else {
-                Toast.makeText(NoteEditor.this, "Deleted failed, please try again later", Toast.LENGTH_LONG).show();
+                Toast.makeText(NoteEditor.this, "Deleted failed, please try again later",
+                        Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -299,7 +307,8 @@ public class NoteEditor extends Activity implements OnClickListener {
                 image.setImageDrawable(getResources().getDrawable(R.drawable.pic_load));
                 hasBody = false;
             } else {
-                Toast.makeText(NoteEditor.this, "Deleted failed, please try again later", Toast.LENGTH_LONG).show();
+                Toast.makeText(NoteEditor.this, "Deleted failed, please try again later",
+                        Toast.LENGTH_LONG).show();
             }
             initBodyButtons();
         }
@@ -343,9 +352,13 @@ public class NoteEditor extends Activity implements OnClickListener {
             }
             if (downloadSuccess) {
                 hasBody = true;
-                Toast.makeText(NoteEditor.this, "Download body successfully", Toast.LENGTH_LONG).show();
+                Toast.makeText(NoteEditor.this, "Download body successfully", Toast.LENGTH_LONG)
+                        .show();
                 if (bodyFile.exists()) {
-                    image.setImageDrawable(new BitmapDrawable(getResources(), bodyFile.getAbsolutePath()));
+                    BitmapFactory.Options opts = new BitmapFactory.Options();
+                    opts.inSampleSize = 3;
+                    Bitmap bmp = BitmapFactory.decodeFile(bodyFile.getAbsolutePath(), opts);
+                    image.setImageBitmap(bmp);
                 }
             }
             initBodyButtons();
