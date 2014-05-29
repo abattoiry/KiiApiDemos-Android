@@ -162,7 +162,11 @@
 	<string name="create_group">Create a group</string>
 	<string name="or">or</string>
 	<string name="select_owned_group">Select an owned group</string>
+	<string name="select_belonged_group">Select a group with me</string>
 	<string name="add_to_group">Add to group</string>
 	<string name="choose_group">Choose group</string>
 	<string name="list_group_members">List group members</string>
+	<string name="tip_get_group_first">Create or select a group first</string>
+	<string name="tip_get_mem_group_first">Select a group with you first</string>
+	<string name="set_group_content">Save note to group bucket</string>
 </resources>
