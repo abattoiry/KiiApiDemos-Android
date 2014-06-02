@@ -19,10 +19,12 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <permission
-        android:name="com.kii.push.permission.C2D_MESSAGE"
+        android:name="com.kii.api_demos.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="com.kii.push.permission.C2D_MESSAGE" />
+
+    <uses-permission android:name="com.kii.api_demos.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
@@ -122,11 +124,32 @@
             android:name="com.kii.api_demos.object_storage.NoteEditor"
             android:label="@string/new_note"
             android:screenOrientation="portrait" />
-		<activity
+        <activity
             android:name="com.kii.api_demos.group_management.GroupManagementActivity"
             android:label="@string/group_management"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.kii.api_demos.push.PushActivity"
+            android:label="@string/push_notifications"
+            android:screenOrientation="portrait" />
+
         <service android:name="com.kii.cloud.analytics.EventUploadService" />
+
+        <receiver
+            android:name="com.kii.api_demos.push.PushBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.kii.api_demos" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.kii.api_demos.push.PushIntentService" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

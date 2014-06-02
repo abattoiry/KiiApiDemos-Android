@@ -25,4 +25,5 @@ public class Constants {
     public static final String  FB_APP_ID = "1440773252805693";
     public static final String  TWITTER_CONSUMER_KEY = "nxRS6qwgmkuty79umuBhug";
     public static final String  TWITTER_CONSUMER_SECRET = "YWWw1kBhf0hSPzbSs4uHKeMtE93PvaM7gXN6d33S2U";
+    public static final String  GCM_SENDER_ID = "102928894173";
 }

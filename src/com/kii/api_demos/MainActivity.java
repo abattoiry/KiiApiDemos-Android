@@ -20,6 +20,7 @@ import com.kii.api_demos.geolocation.QueryByGeoBoxActivity;
 import com.kii.api_demos.geolocation.QueryByGeoDistanceActivity;
 import com.kii.api_demos.group_management.GroupManagementActivity;
 import com.kii.api_demos.object_storage.NotesList;
+import com.kii.api_demos.push.PushActivity;
 import com.kii.api_demos.user_management.LogoutDeleteActivity;
 import com.kii.api_demos.user_management.SignInActivity;
 import com.kii.api_demos.user_management.SignUpActivity;
@@ -105,6 +106,9 @@ public class MainActivity extends ListActivity {
                 break;
             case R.id.cate_group_management: 
                 intent = new Intent(this, GroupManagementActivity.class);
+                break;
+            case R.id.cate_push: 
+                intent = new Intent(this, PushActivity.class);
                 break;
             case R.id.cate_object_storage: {
                 KiiEvent event = KiiAnalytics.event("ClickOnNotepad");

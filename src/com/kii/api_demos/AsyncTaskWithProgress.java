@@ -9,16 +9,24 @@ public abstract class AsyncTaskWithProgress extends AsyncTask<Void, Void, Void> 
     ProgressDialogFragment dialog = null;
     protected FragmentActivity mActivity = null;
     protected boolean has_exception = false;
+    String msg = null;
 
     public AsyncTaskWithProgress(FragmentActivity activity) {
         super();
         mActivity = activity;
     }
 
+    public AsyncTaskWithProgress(FragmentActivity activity, String message) {
+        super();
+        mActivity = activity;
+        msg = message;
+    }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        dialog = ProgressDialogFragment.newInstance(mActivity.getString(R.string.in_progressing));
+        dialog = ProgressDialogFragment.newInstance(msg == null ? mActivity
+                .getString(R.string.in_progressing) : msg);
         dialog.show(mActivity.getSupportFragmentManager(), "dialog");
     }
 
