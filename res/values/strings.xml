@@ -169,4 +169,7 @@
 	<string name="tip_get_group_first">Create or select a group first</string>
 	<string name="tip_get_mem_group_first">Select a group with you first</string>
 	<string name="set_group_content">Save note to group bucket</string>
+	<string name="show_results">Show results</string>
+	<string name="flex_analytics">Flex Analytics</string>
+	<string name="event_analytics">Event Analytics</string>
 </resources>

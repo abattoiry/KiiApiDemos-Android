@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 
 import com.kii.api_demos.abtests.ABTestsActivity;
+import com.kii.api_demos.analytics.EventAnalyticsActivity;
 import com.kii.api_demos.analytics.FlexAnalyticsActivity;
 import com.kii.api_demos.file_storage.DownloadingFilesActivity;
 import com.kii.api_demos.file_storage.PublishingFilesActivity;
@@ -72,6 +73,10 @@ public class MainActivity extends ListActivity {
                 items = getResources().getStringArray(R.array.cate_file_storage);
                 id_array = getResources().obtainTypedArray(R.array.cate_file_storage_ids);
                 break;
+            case R.id.cate_analytics:
+                items = getResources().getStringArray(R.array.cate_analytics);
+                id_array = getResources().obtainTypedArray(R.array.cate_analytics_ids);
+                break;
             case 0:
             default:
                 items = getResources().getStringArray(R.array.kii_components);
@@ -97,6 +102,7 @@ public class MainActivity extends ListActivity {
         switch (id) {
             case R.id.cate_file_storage:
             case R.id.cate_geolocation:
+            case R.id.cate_analytics:
             case R.id.cate_user_management: {
                 intent = new Intent(this, MainActivity.class);
                 intent.putExtra(EXTRA_CATE, id);
@@ -108,6 +114,7 @@ public class MainActivity extends ListActivity {
                 break;
             case R.id.cate_object_storage: {
                 KiiEvent event = KiiAnalytics.event("ClickOnNotepad");
+                event.set("aa", 1);
                 try {
                     event.push();
                 } catch (IOException e) {
@@ -117,6 +124,7 @@ public class MainActivity extends ListActivity {
                 break;
             case R.id.cate_abtests: {
                 KiiEvent event = KiiAnalytics.event("ClickOnABTest");
+                event.set("aa", 1);
                 try {
                     event.push();
                 } catch (IOException e) {
@@ -133,8 +141,11 @@ public class MainActivity extends ListActivity {
             case R.id.delete_user:
                 intent = new Intent(this, LogoutDeleteActivity.class);
                 break;
-            case R.id.cate_flex_analytics:
+            case R.id.flex_analytics:
                 intent = new Intent(this, FlexAnalyticsActivity.class);
+                break;
+            case R.id.event_analytics:
+                intent = new Intent(this, EventAnalyticsActivity.class);
                 break;
             case R.id.sign_in:
                 intent = new Intent(this, SignInActivity.class);

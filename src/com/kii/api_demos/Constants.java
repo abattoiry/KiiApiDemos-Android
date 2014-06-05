@@ -17,7 +17,9 @@ public class Constants {
     public static final Site                KII_SITE = Site.US;
     public static final KiiAnalytics.Site   KII_ANALYTICS_SITE = KiiAnalytics.Site.US;
     public static final String              ABTestingID = "2fecb240-e4bd-11e3-a798-22000ad90d5b";
-
+    public static final String              ANALYTICS_AVG_SCORES_ID = "401";
+    public static final String              ANALYTICS_EVENT_ID = "423";
+    
     public static final String  FILE_BUCKET = "files";
     public static final String  GEOLOCATION_BUCKET = "location";
     public static final String  GEOLOCATION_TITLE = "title";

@@ -73,6 +73,12 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.kii.api_demos.analytics.FlexAnalyticsActivity"
+            android:label="@string/flex_analytics"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.kii.api_demos.analytics.EventAnalyticsActivity"
+            android:label="@string/event_analytics"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
