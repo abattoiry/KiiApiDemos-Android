@@ -114,7 +114,6 @@ public class MainActivity extends ListActivity {
                 break;
             case R.id.cate_object_storage: {
                 KiiEvent event = KiiAnalytics.event("ClickOnNotepad");
-                event.set("aa", 1);
                 try {
                     event.push();
                 } catch (IOException e) {
@@ -124,7 +123,6 @@ public class MainActivity extends ListActivity {
                 break;
             case R.id.cate_abtests: {
                 KiiEvent event = KiiAnalytics.event("ClickOnABTest");
-                event.set("aa", 1);
                 try {
                     event.push();
                 } catch (IOException e) {

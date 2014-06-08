@@ -172,4 +172,5 @@
 	<string name="show_results">Show results</string>
 	<string name="flex_analytics">Flex Analytics</string>
 	<string name="event_analytics">Event Analytics</string>
+	<string name="event_analytics_desc">This code shows how to send event, and fetch recent week\'s data.</string>
 </resources>
