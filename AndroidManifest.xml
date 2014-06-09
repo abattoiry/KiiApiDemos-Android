@@ -132,6 +132,10 @@
             android:name="com.kii.api_demos.group_management.GroupManagementActivity"
             android:label="@string/group_management"
             android:screenOrientation="portrait" />
+		<activity
+            android:name="com.kii.api_demos.server_extension.ServerExtensionActivity"
+            android:label="@string/server_extension"
+            android:screenOrientation="portrait" />
         <service android:name="com.kii.cloud.analytics.EventUploadService" />
     </application>
 
