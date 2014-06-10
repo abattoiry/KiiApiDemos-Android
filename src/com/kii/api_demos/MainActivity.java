@@ -116,6 +116,7 @@ public class MainActivity extends ListActivity {
                 break;
             case R.id.cate_push: 
                 intent = new Intent(this, PushActivity.class);
+                break;
             case R.id.cate_server_extension:
                 intent = new Intent(this, ServerExtensionActivity.class);
                 break;

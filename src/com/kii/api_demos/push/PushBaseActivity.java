@@ -190,6 +190,7 @@ public class PushBaseActivity extends FragmentActivity {
         try {
             KiiUser.pushInstallation().install(
                     regid);
+            Toast.makeText(this, "Register push service successfully", Toast.LENGTH_SHORT).show();
         } catch (ConflictException e) {
             // Already installed.
         } catch (AppException e) {
