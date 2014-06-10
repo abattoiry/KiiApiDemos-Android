@@ -6,7 +6,7 @@
     <item name="cate_object_storage" type="id"/>
     <item name="cate_file_storage" type="id"/>
     <item name="cate_geolocation" type="id"/>
-    <item name="cate_flex_analytics" type="id"/>
+    <item name="cate_analytics" type="id"/>
     <item name="cate_server_extension" type="id"/>
     <item name="cate_abtests" type="id"/>
     <item name="cate_push" type="id"/>
@@ -24,5 +24,6 @@
     <item name="uploading_files" type="id"/>
     <item name="downloading_files" type="id"/>
     <item name="publishing_files" type="id"/>
-
+	<item name="flex_analytics" type="id"/>
+	<item name="event_analytics" type="id"/>
 </resources>

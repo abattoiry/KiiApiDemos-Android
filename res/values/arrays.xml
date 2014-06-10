@@ -7,7 +7,7 @@
         <item>Object storage (Notepad sample)</item>
         <item>File storage</item>
         <item>Geolocation data</item>
-        <item>Flex Analytics</item>
+        <item>Analytics</item>
         <item>A/B Tests</item>
         <item>Push notifications</item>
         <item>Server Extension</item>
@@ -19,7 +19,7 @@
         <item>@id/cate_object_storage</item>
         <item>@id/cate_file_storage</item>
         <item>@id/cate_geolocation</item>
-        <item>@id/cate_flex_analytics</item>
+        <item>@id/cate_analytics</item>
         <item>@id/cate_abtests</item>
         <item>@id/cate_push</item>
         <item>@id/cate_server_extension</item>
@@ -53,6 +53,16 @@
         <item>@id/add_geopoint</item>
         <item>@id/query_pois_by_geobox</item>
         <item>@id/query_pois_by_geodistance</item>
+    </array>
+    
+    <string-array name="cate_analytics">
+        <item>@string/flex_analytics</item>
+        <item>@string/event_analytics</item>
+    </string-array>
+
+    <array name="cate_analytics_ids">
+        <item>@id/flex_analytics</item>
+        <item>@id/event_analytics</item>
     </array>
 
     <string-array name="cate_file_storage">

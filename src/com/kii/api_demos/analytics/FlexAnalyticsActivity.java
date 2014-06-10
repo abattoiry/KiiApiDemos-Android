@@ -1,20 +1,25 @@
 
 package com.kii.api_demos.analytics;
 
-import android.os.AsyncTask;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.kii.api_demos.ProgressDialogFragment;
+import com.kii.api_demos.AsyncTaskWithProgress;
+import com.kii.api_demos.Constants;
 import com.kii.api_demos.R;
 import com.kii.api_demos.Utils;
+import com.kii.cloud.analytics.KiiAnalytics;
+import com.kii.cloud.analytics.KiiAnalyticsException;
+import com.kii.cloud.analytics.aggregationresult.GroupedResult;
+import com.kii.cloud.analytics.aggregationresult.GroupedSnapShot;
+import com.kii.cloud.analytics.aggregationresult.ResultQuery;
 import com.kii.cloud.storage.Kii;
 import com.kii.cloud.storage.KiiObject;
 import com.kii.cloud.storage.KiiUser;
@@ -25,7 +30,11 @@ import com.kii.cloud.storage.exception.app.NotFoundException;
 import com.kii.cloud.storage.exception.app.UnauthorizedException;
 import com.kii.cloud.storage.exception.app.UndefinedException;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.io.IOException;
+import java.util.List;
 
 public class FlexAnalyticsActivity extends FragmentActivity implements OnClickListener {
 
@@ -38,7 +47,6 @@ public class FlexAnalyticsActivity extends FragmentActivity implements OnClickLi
 
     EditText scoreField, versionField;
     Spinner levelSpinner;
-    Button saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +64,8 @@ public class FlexAnalyticsActivity extends FragmentActivity implements OnClickLi
                 android.R.layout.simple_spinner_item, mLevelStrings);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         levelSpinner.setAdapter(adapter);
-        saveButton = (Button) findViewById(R.id.save_button);
-        saveButton.setOnClickListener(this);
+        findViewById(R.id.save_button).setOnClickListener(this);
+        findViewById(R.id.show_button).setOnClickListener(this);
     }
 
     private static final String[] mLevelStrings = {
@@ -69,6 +77,9 @@ public class FlexAnalyticsActivity extends FragmentActivity implements OnClickLi
         switch (v.getId()) {
             case R.id.save_button:
                 saveScore();
+                break;
+            case R.id.show_button:
+                new FetchResultsTask(this).execute();
                 break;
         }
     }
@@ -89,24 +100,19 @@ public class FlexAnalyticsActivity extends FragmentActivity implements OnClickLi
         scoreObject.set(KEY_SCORE, score);
         scoreObject.set(KEY_VERSION, appVer);
         scoreObject.set(KEY_LEVEL, level);
-        new SaveScoreTask().execute();
+        new SaveScoreTask(this).execute();
     }
 
-    class SaveScoreTask extends AsyncTask<Void, Void, Void> {
-        ProgressDialogFragment dialog = null;
-        boolean succ = false;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            dialog = ProgressDialogFragment.newInstance("Saving high score…");
-            dialog.show(getSupportFragmentManager(), "dialog");
+    class SaveScoreTask extends AsyncTaskWithProgress {
+        public SaveScoreTask(FragmentActivity activity) {
+            super(activity);
         }
+
+        boolean succ = false;
 
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            dialog.dismiss();
             if (succ) {
                 Toast.makeText(FlexAnalyticsActivity.this,
                         "Save successfully", Toast.LENGTH_LONG)
@@ -133,6 +139,50 @@ public class FlexAnalyticsActivity extends FragmentActivity implements OnClickLi
             } catch (IOException e) {
             }
             return null;
+        }
+    }
+
+    class FetchResultsTask extends AsyncTaskWithProgress {
+        String resultData = null;
+
+        public FetchResultsTask(FragmentActivity activity) {
+            super(activity);
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            ResultQuery query = ResultQuery.builderWithGroupingKey("UserLevel")
+                    .build();
+
+            try {
+                GroupedResult result = KiiAnalytics.getResult(Constants.ANALYTICS_AVG_SCORES_ID,
+                        query);
+                List<GroupedSnapShot> snapshots = result.getSnapShots();
+                StringBuilder sb = new StringBuilder();
+                for (GroupedSnapShot gs : snapshots) {
+                    if (sb.length() > 0) {
+                        sb.append('\n');
+                    }
+                    sb.append(gs.getName());
+                    sb.append("        ");
+                    JSONArray data = gs.getData();
+                    sb.append(data.getDouble(data.length() - 1));
+                }
+                resultData = sb.toString();
+            } catch (KiiAnalyticsException e) {
+            } catch (JSONException jsone) {
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            AlertDialog.Builder ab = new AlertDialog.Builder(mActivity);
+            ab.setTitle("Average Scores");
+            ab.setMessage(resultData);
+            ab.setPositiveButton(android.R.string.ok, null);
+            ab.show();
         }
 
     }

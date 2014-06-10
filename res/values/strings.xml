@@ -170,4 +170,11 @@
 	<string name="tip_get_mem_group_first">Select a group with you first</string>
 	<string name="set_group_content">Save note to group bucket</string>
 	<string name="push_notifications">Push Notifications</string>
+	<string name="show_results">Show results</string>
+	<string name="flex_analytics">Flex Analytics</string>
+	<string name="event_analytics">Event Analytics</string>
+	<string name="event_analytics_desc">This code shows how to send event, and fetch recent week\'s data.</string>
+	<string name="server_extension">Server Extension</string>
+	<string name="server_extension_desc">Follow the instructions to upload your server extension code first.</string>
+	<string name="server_extension_delete_all_notes">Delete all notes</string>
 </resources>
