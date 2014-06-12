@@ -13,4 +13,16 @@
         android:layout_height="wrap_content"
         android:text="@string/push_desc" />
 
+    <Button
+        android:id="@+id/create_topic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/push_create_topic" />
+    
+    <Button
+        android:id="@+id/push_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/push_send" />
+
 </LinearLayout>
