@@ -11,7 +11,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.kii.api_demos.R;
+import com.kii.apis.R;
 import com.kii.apis.MainActivity;
 import com.kii.cloud.storage.PushMessageBundleHelper;
 import com.kii.cloud.storage.PushMessageBundleHelper.MessageType;

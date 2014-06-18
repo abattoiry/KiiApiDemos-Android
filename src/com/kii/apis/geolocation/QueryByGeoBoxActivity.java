@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.kii.api_demos.R;
+import com.kii.apis.R;
 import com.kii.apis.Constants;
 import com.kii.apis.Utils;
 import com.kii.cloud.storage.GeoPoint;
@@ -127,8 +127,6 @@ public class QueryByGeoBoxActivity extends Activity {
 
     protected void query_geobox() {
 
-        double lat = 0.00;
-        double lon = 0.00;
         if (mLatText.getText().length() == 0)
         {
             Toast.makeText(QueryByGeoBoxActivity.this,

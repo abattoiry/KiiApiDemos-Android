@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.kii.api_demos.R;
+import com.kii.apis.R;
 import com.kii.apis.AsyncTaskWithProgress;
 import com.kii.apis.Constants;
 import com.kii.apis.Utils;

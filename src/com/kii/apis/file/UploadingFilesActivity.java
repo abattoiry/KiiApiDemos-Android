@@ -21,7 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.kii.api_demos.R;
+import com.kii.apis.R;
 import com.kii.apis.Constants;
 import com.kii.apis.Utils;
 import com.kii.cloud.storage.KiiBucket;

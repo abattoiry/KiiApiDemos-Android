@@ -19,7 +19,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.kii.api_demos.R;
+import com.kii.apis.R;
 import com.kii.apis.Constants;
 import com.kii.apis.ProgressDialogFragment;
 import com.kii.apis.Utils;

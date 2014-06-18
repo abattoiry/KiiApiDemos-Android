@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
-import com.kii.api_demos.R;
+import com.kii.apis.R;
 
 public abstract class AsyncTaskWithProgress extends AsyncTask<Void, Void, Void> {
     ProgressDialogFragment dialog = null;
