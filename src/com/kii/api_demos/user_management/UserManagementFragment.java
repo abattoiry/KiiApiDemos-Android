@@ -12,7 +12,9 @@ import android.widget.ListView;
 import com.kii.api_demos.R;
 import com.kii.api_demos.ViewUtils;
 import com.kii.api_demos.user_management.signin.SignInFragment;
+import com.kii.api_demos.user_management.signinup.SignInUpFragment;
 import com.kii.api_demos.user_management.signup.SignupFragment;
+import com.kii.api_demos.user_management.userattributes.UserAttributesFragment;
 
 /**
  * Fragment for User Management Page
@@ -59,8 +61,8 @@ public class UserManagementFragment extends ListFragment {
         Intent intent;
         switch (itemId) {
         case R.id.simple_sign_up_in:
-            intent = new Intent(activity, SimpleSignUpInActivity.class);
-            break;
+            ViewUtils.toNextFragment(getFragmentManager(), SignInUpFragment.newInstance(), true);
+            return;
         case R.id.sign_up:
             ViewUtils.toNextFragment(getFragmentManager(), SignupFragment.newInstance(), true);
             return;
@@ -68,8 +70,8 @@ public class UserManagementFragment extends ListFragment {
             ViewUtils.toNextFragment(getFragmentManager(), SignInFragment.newInstance(), true);
             return;
         case R.id.user_attributes:
-            intent = new Intent(activity, UserAttributesActivity.class);
-            break;
+            ViewUtils.toNextFragment(getFragmentManager(), UserAttributesFragment.newInstance(), true);
+            return;
         case R.id.delete_user:
             intent = new Intent(activity, LogoutDeleteActivity.class);
             break;
