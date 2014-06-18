@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kii.api_demos"
+    package="com.kii.apis"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="18" />
+        android:minSdkVersion="9"
+        android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -21,10 +21,10 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <permission
-        android:name="com.kii.api_demos.permission.C2D_MESSAGE"
+        android:name="com.kii.apis.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.kii.api_demos.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.kii.apis.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
@@ -33,7 +33,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.kii.api_demos.MainActivity"
+            android:name="com.kii.apis.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,119 +42,118 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.kii.api_demos.ShowCodeActivity"
+            android:name="com.kii.apis.ShowCodeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.kii.api_demos.user_management.SignUpActivity"
+            android:name="com.kii.apis.user.SignUpActivity"
             android:label="@string/sign_up"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.kii.api_demos.user_management.SignInActivity"
+            android:name="com.kii.apis.user.SignInActivity"
             android:label="@string/sign_in"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.kii.api_demos.user_management.LogoutDeleteActivity"
+            android:name="com.kii.apis.user.LogoutDeleteActivity"
             android:label="@string/logout_delete_title"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.kii.api_demos.user_management.SimpleSignUpInActivity"
+            android:name="com.kii.apis.user.SimpleSignUpInActivity"
             android:label="@string/simple_sign_up_in_title"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.kii.api_demos.user_management.UserAttributesActivity"
+            android:name="com.kii.apis.user.UserAttributesActivity"
             android:label="@string/user_attributes"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.kii.api_demos.user_management.SocialNetworkIntegrationActivity"
+            android:name="com.kii.apis.user.SocialNetworkIntegrationActivity"
             android:label="@string/social_network_integration_title"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.kii.api_demos.analytics.FlexAnalyticsActivity"
+            android:name="com.kii.apis.analytics.FlexAnalyticsActivity"
             android:label="@string/flex_analytics"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.kii.api_demos.analytics.EventAnalyticsActivity"
+            android:name="com.kii.apis.analytics.EventAnalyticsActivity"
             android:label="@string/event_analytics"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.kii.api_demos.geolocation.AddPOIActivity"
+            android:name="com.kii.apis.geolocation.AddPOIActivity"
             android:label="@string/add_geopoint"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.kii.api_demos.geolocation.QueryByGeoBoxActivity"
+            android:name="com.kii.apis.geolocation.QueryByGeoBoxActivity"
             android:label="@string/query_pois_by_geobox"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.kii.api_demos.geolocation.QueryByGeoDistanceActivity"
+            android:name="com.kii.apis.geolocation.QueryByGeoDistanceActivity"
             android:label="@string/query_pois_by_geodistance"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.kii.api_demos.file_storage.DownloadingFilesActivity"
+            android:name="com.kii.apis.file.DownloadingFilesActivity"
             android:label="@string/title_activity_downloading_files"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.kii.api_demos.file_storage.FileBrowserActivity"
+            android:name="com.kii.apis.file.FileBrowserActivity"
             android:label="@string/title_activity_file_browser"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.kii.api_demos.file_storage.PublishingFilesActivity"
+            android:name="com.kii.apis.file.PublishingFilesActivity"
             android:label="@string/title_activity_publishing_files"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.kii.api_demos.file_storage.UploadingFilesActivity"
+            android:name="com.kii.apis.file.UploadingFilesActivity"
             android:label="@string/title_activity_uploading_files"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.kii.api_demos.abtests.ABTestsActivity"
+            android:name="com.kii.apis.abtest.ABTestsActivity"
             android:label="@string/abtests_title"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.kii.api_demos.object_storage.NotesList"
+            android:name="com.kii.apis.object.NotesList"
             android:label="@string/noteslist_title"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.kii.api_demos.object_storage.NoteEditor"
+            android:name="com.kii.apis.object.NoteEditor"
             android:label="@string/new_note"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.kii.api_demos.group_management.GroupManagementActivity"
+            android:name="com.kii.apis.group.GroupManagementActivity"
             android:label="@string/group_management"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.kii.api_demos.push.PushActivity"
+            android:name="com.kii.apis.push.PushActivity"
             android:label="@string/push_notifications"
             android:screenOrientation="portrait" />
 		<activity
-            android:name="com.kii.api_demos.server_extension.ServerExtensionActivity"
+            android:name="com.kii.apis.extension.ServerExtensionActivity"
             android:label="@string/server_extension"
             android:screenOrientation="portrait" />
         <service android:name="com.kii.cloud.analytics.EventUploadService" />
 
         <receiver
-            android:name="com.kii.api_demos.push.PushBroadcastReceiver"
+            android:name="com.kii.apis.push.PushBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-
-                <category android:name="com.kii.api_demos" />
+                <category android:name="com.kii.apis" />
             </intent-filter>
         </receiver>
 
-        <service android:name="com.kii.api_demos.push.PushIntentService" />
+        <service android:name="com.kii.apis.push.PushIntentService" />
 
         <meta-data
             android:name="com.google.android.gms.version"
