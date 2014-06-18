@@ -10,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.kii.api_demos.R;
+import com.kii.api_demos.ViewUtils;
+import com.kii.api_demos.user_management.signin.SignInFragment;
+import com.kii.api_demos.user_management.signup.SignupFragment;
 
 /**
  * Fragment for User Management Page
@@ -59,11 +62,11 @@ public class UserManagementFragment extends ListFragment {
             intent = new Intent(activity, SimpleSignUpInActivity.class);
             break;
         case R.id.sign_up:
-            intent = new Intent(activity, SignUpActivity.class);
-            break;
+            ViewUtils.toNextFragment(getFragmentManager(), SignupFragment.newInstance(), true);
+            return;
         case R.id.sign_in:
-            intent = new Intent(activity, SignInActivity.class);
-            break;
+            ViewUtils.toNextFragment(getFragmentManager(), SignInFragment.newInstance(), true);
+            return;
         case R.id.user_attributes:
             intent = new Intent(activity, UserAttributesActivity.class);
             break;
