@@ -115,6 +115,8 @@ public class SignInFragment extends Fragment {
         if (Utils.isCurrentLogined()) {
             Toast.makeText(activity, R.string.sign_in_already_login, Toast.LENGTH_LONG).show();
         }
+
+        activity.setTitle(R.string.sign_in);
     }
 
     private final RadioGroup.OnCheckedChangeListener mCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {

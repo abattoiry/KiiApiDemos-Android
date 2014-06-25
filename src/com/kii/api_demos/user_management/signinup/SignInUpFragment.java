@@ -126,6 +126,14 @@ public class SignInUpFragment extends Fragment {
         }
     };
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Activity activity = getActivity();
+
+        activity.setTitle(R.string.simple_sign_up_in_title);
+    }
+
     class LoginOrRegTask extends AsyncTask<String, Void, Void> {
 
         ProgressDialogFragment dialog = null;

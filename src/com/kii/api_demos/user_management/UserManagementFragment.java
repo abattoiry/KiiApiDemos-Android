@@ -1,7 +1,6 @@
 package com.kii.api_demos.user_management;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -11,9 +10,11 @@ import android.widget.ListView;
 
 import com.kii.api_demos.R;
 import com.kii.api_demos.ViewUtils;
+import com.kii.api_demos.user_management.logoutdelete.LogoutDeleteFragment;
 import com.kii.api_demos.user_management.signin.SignInFragment;
 import com.kii.api_demos.user_management.signinup.SignInUpFragment;
 import com.kii.api_demos.user_management.signup.SignupFragment;
+import com.kii.api_demos.user_management.socialnetwork.SocialNetworkIntegrationFragment;
 import com.kii.api_demos.user_management.userattributes.UserAttributesFragment;
 
 /**
@@ -38,6 +39,8 @@ public class UserManagementFragment extends ListFragment {
         Activity activity = getActivity();
         if (activity == null) { return; }
 
+        activity.setTitle(R.string.user_management);
+
         String[] items = getResources().getStringArray(R.array.cate_user_management);
         TypedArray idArray = getResources().obtainTypedArray(R.array.cate_user_management_ids);
 
@@ -58,7 +61,6 @@ public class UserManagementFragment extends ListFragment {
         if (activity == null) { return; }
 
         int itemId = itemIds[position];
-        Intent intent;
         switch (itemId) {
         case R.id.simple_sign_up_in:
             ViewUtils.toNextFragment(getFragmentManager(), SignInUpFragment.newInstance(), true);
@@ -73,14 +75,13 @@ public class UserManagementFragment extends ListFragment {
             ViewUtils.toNextFragment(getFragmentManager(), UserAttributesFragment.newInstance(), true);
             return;
         case R.id.delete_user:
-            intent = new Intent(activity, LogoutDeleteActivity.class);
-            break;
+            ViewUtils.toNextFragment(getFragmentManager(), LogoutDeleteFragment.newInstance(), true);
+            return;
         case R.id.social_network_integration:
-            intent = new Intent(activity, SocialNetworkIntegrationActivity.class);
-            break;
+            ViewUtils.toNextFragment(getFragmentManager(), SocialNetworkIntegrationFragment.newInstance(), true);
+            return;
         default:
             return;
         }
-        startActivity(intent);
     }
 }

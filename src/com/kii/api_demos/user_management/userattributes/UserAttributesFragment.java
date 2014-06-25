@@ -76,6 +76,7 @@ public class UserAttributesFragment extends Fragment {
             return;
         }
 
+        activity.setTitle(R.string.user_attributes);
         new RefreshTask().execute();
     }
 

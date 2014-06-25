@@ -96,6 +96,8 @@ public class SignupFragment extends Fragment {
             Toast.makeText(activity, R.string.sign_up_already_login, Toast.LENGTH_LONG).show();
             updateStatus();
         }
+
+        activity.setTitle(R.string.sign_up);
     }
 
     protected void updateStatus() {
