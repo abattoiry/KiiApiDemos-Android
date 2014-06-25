@@ -180,4 +180,5 @@
 	<string name="push_desc">You can send test push notifications from developer portal.</string>
 	<string name="push_create_topic">Create&amp;subscribe push topic</string>
 	<string name="push_send">Send message to myself</string>
+    <string name="user_management">User management</string>
 </resources>
