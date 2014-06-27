@@ -45,35 +45,6 @@
             android:name="com.kii.api_demos.ShowCodeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.kii.api_demos.user_management.SignUpActivity"
-            android:label="@string/sign_up"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="com.kii.api_demos.user_management.SignInActivity"
-            android:label="@string/sign_in"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="com.kii.api_demos.user_management.LogoutDeleteActivity"
-            android:label="@string/logout_delete_title"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.kii.api_demos.user_management.SimpleSignUpInActivity"
-            android:label="@string/simple_sign_up_in_title"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="com.kii.api_demos.user_management.UserAttributesActivity"
-            android:label="@string/user_attributes"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="com.kii.api_demos.user_management.SocialNetworkIntegrationActivity"
-            android:label="@string/social_network_integration_title"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
             android:name="com.kii.api_demos.analytics.FlexAnalyticsActivity"
             android:label="@string/flex_analytics"
             android:screenOrientation="portrait"
@@ -142,6 +113,8 @@
             android:name="com.kii.api_demos.server_extension.ServerExtensionActivity"
             android:label="@string/server_extension"
             android:screenOrientation="portrait" />
+
+        <activity android:name="com.kii.cloud.storage.social.twitter.KiiTwitterLoginActivity"/>
         <service android:name="com.kii.cloud.analytics.EventUploadService" />
 
         <receiver
@@ -153,6 +126,7 @@
                 <category android:name="com.kii.api_demos" />
             </intent-filter>
         </receiver>
+
 
         <service android:name="com.kii.api_demos.push.PushIntentService" />
 
