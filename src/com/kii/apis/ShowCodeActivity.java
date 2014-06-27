@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.SimpleExpandableListAdapter;
 
-import com.kii.apis.R;
+import com.kii.api_demos.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;

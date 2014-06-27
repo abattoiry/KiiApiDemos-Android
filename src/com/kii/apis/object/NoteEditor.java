@@ -19,7 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.kii.apis.R;
+import com.kii.api_demos.R;
 import com.kii.apis.Utils;
 import com.kii.cloud.storage.KiiObject;
 import com.kii.cloud.storage.exception.app.NotFoundException;

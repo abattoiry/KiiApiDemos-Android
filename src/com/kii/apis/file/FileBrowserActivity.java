@@ -17,7 +17,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.kii.apis.R;
+import com.kii.api_demos.R;
 
 public class FileBrowserActivity extends Activity{
     private ListView mListView;	

@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
-import com.kii.apis.R;
+import com.kii.api_demos.R;
 import com.kii.apis.AsyncTaskWithProgress;
 import com.kii.cloud.storage.Kii;
 import com.kii.cloud.storage.KiiServerCodeEntry;

@@ -3,12 +3,13 @@ package com.kii.apis.user;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.kii.apis.R;
+import com.kii.api_demos.R;
 import com.kii.apis.Constants;
 import com.kii.apis.ShowCodeActivity;
 import com.kii.apis.Utils;

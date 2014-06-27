@@ -10,7 +10,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.content.res.TypedArray;
 
-import com.kii.apis.R;
+import com.kii.api_demos.R;
 import com.kii.apis.abtest.ABTestsActivity;
 import com.kii.apis.analytics.EventAnalyticsActivity;
 import com.kii.apis.analytics.FlexAnalyticsActivity;

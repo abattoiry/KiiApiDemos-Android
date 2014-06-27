@@ -2,7 +2,9 @@
 package com.kii.apis.geolocation;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
@@ -14,7 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.kii.apis.R;
+import com.kii.api_demos.R;
 import com.kii.apis.Constants;
 import com.kii.apis.Utils;
 import com.kii.cloud.storage.GeoPoint;
