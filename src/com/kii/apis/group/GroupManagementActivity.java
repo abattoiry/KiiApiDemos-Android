@@ -81,7 +81,7 @@ public class GroupManagementActivity extends FragmentActivity implements OnClick
                     protected void onPostExecute(Void result) {
                         super.onPostExecute(result);
                         groupIdTextView.setText(currentGroup.getGroupName());
-                        fetchGroupNote();
+//                        fetchGroupNote();
                     }
                 }.execute();
                 break;
@@ -118,7 +118,7 @@ public class GroupManagementActivity extends FragmentActivity implements OnClick
                                 public void onClick(DialogInterface dialog, int which) {
                                     currentGroup = groups.get(which);
                                     groupIdTextView.setText(currentGroup.getGroupName());
-                                    fetchGroupNote();
+//                                    fetchGroupNote();
                                 }
                             });
                             ab.setNegativeButton(android.R.string.cancel, null);
