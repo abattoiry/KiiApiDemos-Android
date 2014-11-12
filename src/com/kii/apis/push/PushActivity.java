@@ -1,7 +1,13 @@
 
 package com.kii.apis.push;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
@@ -19,12 +25,16 @@ import com.kii.cloud.storage.exception.app.ConflictException;
 
 import java.io.IOException;
 
+
 public class PushActivity extends PushBaseActivity implements OnClickListener {
     static final String TopicName = "Test";
+    private NotificationManager mNotificationManager;
+    private Notification notification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (!Utils.isCurrentLogined()) {
             Toast.makeText(this, R.string.need_to_login_first, Toast.LENGTH_LONG).show();
             finish();
@@ -33,7 +43,9 @@ public class PushActivity extends PushBaseActivity implements OnClickListener {
         setContentView(R.layout.push);
         findViewById(R.id.create_topic).setOnClickListener(this);
         findViewById(R.id.push_msg).setOnClickListener(this);
-        registerGCM();
+        //google
+//        registerGCM();
+
     }
 
     @Override

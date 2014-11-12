@@ -23,7 +23,13 @@ import android.widget.Toast;
 import com.kii.apis.AsyncTaskWithProgress;
 import com.kii.apis.R;
 import com.kii.apis.Utils;
+import com.kii.apis.push.JPushPreference;
+import com.kii.cloud.storage.KiiPushInstallation;
 import com.kii.cloud.storage.KiiUser;
+import com.kii.cloud.storage.callback.KiiPushCallBack;
+import com.kii.cloud.storage.callback.KiiUserCallBack;
+
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * Fragment for Sign in Page
@@ -47,6 +53,7 @@ public class SignInFragment extends Fragment {
     int country_code_pos = 0;
     EditText usernameEdit;
     EditText passwordEdit;
+    private String USER_NAME, PASSWORD;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -195,6 +202,8 @@ public class SignInFragment extends Fragment {
             try {
                 switch (radioGroup.getCheckedRadioButtonId()) {
                 case R.id.login_with_username:
+                    USER_NAME = usernameEdit.getText().toString();
+                    PASSWORD = passwordEdit.getText().toString();
                     mUser = KiiUser.logIn(usernameEdit.getText().toString(), passwordEdit
                             .getText()
                             .toString());
@@ -213,6 +222,9 @@ public class SignInFragment extends Fragment {
                     token = mUser.getAccessToken();
                     Utils.saveToken(activity.getApplicationContext(), token);
                     succ = true;
+
+                    //registerJPush
+                    registerJPush();
                 }
             } catch (Exception e) {
                 succ = false;
@@ -232,4 +244,22 @@ public class SignInFragment extends Fragment {
         }
     }
 
+    private void registerJPush() {
+        JPushInterface.resumePush(getActivity().getApplicationContext());
+        final String regId = JPushInterface.getUdid(getActivity().getApplicationContext());
+        JPushInterface.setAlias(getActivity().getApplicationContext(), regId, null);
+
+        // install user device
+        boolean development = false;
+        KiiUser.pushInstallation(KiiPushInstallation.PushBackend.JPUSH, development).install(regId, new KiiPushCallBack() {
+            public void onInstallCompleted(int taskId, Exception e) {
+                if (e != null) {
+                    Toast.makeText(getActivity(), "Error install: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                // if all succeeded, save registration ID to preference.
+                JPushPreference.setRegistrationId(getActivity().getApplicationContext(), regId);
+            }
+        });
+    }
 }
