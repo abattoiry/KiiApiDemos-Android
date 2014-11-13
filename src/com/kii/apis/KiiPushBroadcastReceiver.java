@@ -41,16 +41,16 @@ public class KiiPushBroadcastReceiver extends BroadcastReceiver {
             switch (type) {
                 case PUSH_TO_APP:
                     PushToAppMessage appMsg = (PushToAppMessage)message;
-                    ToastUtil.show(context, "pushed");
+                    showNotification("push to app");
+                    ToastUtil.show(context, "here");
                     break;
                 case PUSH_TO_USER:
                     PushToUserMessage userMsg = (PushToUserMessage)message;
-                    ToastUtil.show(context, "pushed");
+                    showNotification("push to user");
                     break;
                 case DIRECT_PUSH:
                     DirectPushMessage directMsg = (DirectPushMessage)message;
                     showNotification(directMsg.getMessage().getString("data"));
-                    ToastUtil.show(context, "pushed");
                     break;
             }
         }
@@ -59,13 +59,13 @@ public class KiiPushBroadcastReceiver extends BroadcastReceiver {
 
     private void showNotification(String data) {
         mNotificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-        Intent intent = new Intent(context, PushActivity.class);
+        Intent intent = new Intent(context, MainActivity.class);
         // 获取PendingIntent,点击时发送该Intent
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context);
-        mBuilder.setContentTitle("牛逼")
+        mBuilder.setContentTitle("push")
                 .setContentText(data)
-                .setTicker("测试通知来啦")
+                .setTicker("push")
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setContentIntent(pendingIntent);

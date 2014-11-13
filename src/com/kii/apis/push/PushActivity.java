@@ -15,11 +15,15 @@ import android.widget.Toast;
 import com.kii.apis.AsyncTaskWithProgress;
 import com.kii.apis.R;
 import com.kii.apis.Utils;
+import com.kii.cloud.storage.KiiBucket;
+import com.kii.cloud.storage.KiiObject;
 import com.kii.cloud.storage.KiiPushMessage;
 import com.kii.cloud.storage.KiiPushMessage.Data;
 import com.kii.cloud.storage.KiiPushSubscription;
 import com.kii.cloud.storage.KiiTopic;
 import com.kii.cloud.storage.KiiUser;
+import com.kii.cloud.storage.callback.KiiObjectCallBack;
+import com.kii.cloud.storage.callback.KiiPushCallBack;
 import com.kii.cloud.storage.exception.app.AppException;
 import com.kii.cloud.storage.exception.app.ConflictException;
 
@@ -52,7 +56,7 @@ public class PushActivity extends PushBaseActivity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.create_topic:
-                createTopicAndSubscribe();
+                pushToApp();
                 break;
             case R.id.push_msg:
                 sendPush();
@@ -108,6 +112,37 @@ public class PushActivity extends PushBaseActivity implements OnClickListener {
         }.execute();
     }
 
+    void pushToApp(){
+        new AsyncTaskWithProgress(this) {
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                final KiiUser user = KiiUser.getCurrentUser();
+                final KiiBucket bucket = user.bucket("push");
+                bucket.object().save(new KiiObjectCallBack() {
+                    @Override
+                    public void onSaveCompleted(int token, KiiObject object, Exception exception) {
+                        if (exception != null) {
+                            // Error handling
+                            return;
+                        }
+                        user.pushSubscription().subscribeBucket(bucket, new KiiPushCallBack() {
+                            @Override
+                            public void onSubscribeBucketCompleted(int taskId, KiiBucket target, Exception exception) {
+                                if (exception != null) {
+                                    // Error handling
+                                    return;
+                                }
+                            }
+                        });
+                    }
+                });
+
+                return null;
+            }
+        }.execute();
+    }
+
     void sendPush() {
         new AsyncTaskWithProgress(this) {
 
@@ -138,4 +173,5 @@ public class PushActivity extends PushBaseActivity implements OnClickListener {
             }
         }.execute();
     }
+
 }
