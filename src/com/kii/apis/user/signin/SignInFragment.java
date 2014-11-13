@@ -22,12 +22,20 @@ import android.widget.Toast;
 
 import com.kii.apis.AsyncTaskWithProgress;
 import com.kii.apis.R;
+import com.kii.apis.ToastUtil;
 import com.kii.apis.Utils;
+import com.kii.apis.formatCheck;
 import com.kii.apis.push.JPushPreference;
 import com.kii.cloud.storage.KiiPushInstallation;
 import com.kii.cloud.storage.KiiUser;
 import com.kii.cloud.storage.callback.KiiPushCallBack;
 import com.kii.cloud.storage.callback.KiiUserCallBack;
+import com.kii.cloud.storage.exception.app.AppException;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -53,6 +61,7 @@ public class SignInFragment extends Fragment {
     int country_code_pos = 0;
     EditText usernameEdit;
     EditText passwordEdit;
+    EditText emailEdit;
     private String USER_NAME, PASSWORD;
 
     @Override
@@ -69,6 +78,7 @@ public class SignInFragment extends Fragment {
         countrySpinner = (Spinner) root.findViewById(R.id.country_spinner);
         usernameEdit = (EditText) root.findViewById(R.id.username);
         passwordEdit = (EditText) root.findViewById(R.id.password);
+        emailEdit = (EditText) root.findViewById(R.id.email);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
                 R.array.country_names, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -86,6 +96,7 @@ public class SignInFragment extends Fragment {
         });
         loginTokenButton.setOnClickListener(mClickListener);
         root.findViewById(R.id.login).setOnClickListener(mClickListener);
+        root.findViewById(R.id.reset_password).setOnClickListener(mClickListener);
         SharedPreferences prefs = context.getSharedPreferences(Utils.PREFS_NAME,
                 Context.MODE_PRIVATE);
         token = prefs.getString(Utils.KEY_TOEKN, "");
@@ -153,6 +164,15 @@ public class SignInFragment extends Fragment {
             case R.id.login:
                 new LoginTask(activity).execute();
                 break;
+            case R.id.reset_password:
+                if(!formatCheck.isEmail(emailEdit.getText().toString())){
+                    Toast.makeText(getActivity(),"please enter valid email address", Toast.LENGTH_SHORT).show();
+                }else {
+                    new ResetPassword(activity).execute();
+                }
+                break;
+
+
             }
         }
     };
@@ -241,6 +261,51 @@ public class SignInFragment extends Fragment {
             updateInfoViews();
             Toast.makeText(activity, succ ? R.string.login_succ : R.string.login_failed,
                     Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    class ResetPassword extends AsyncTaskWithProgress {
+        boolean success = true;
+        String errorMessage;
+        JSONObject jsonObject;
+        public ResetPassword(FragmentActivity activity) {
+            super(activity);
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                KiiUser.resetPassword(emailEdit.getText().toString());
+            } catch (IOException e) {
+                // Password reset failed for some reasons
+                e.printStackTrace();
+                success = false;
+                errorMessage = e.getMessage();
+            } catch (AppException e) {
+                // Password reset failed for some reasons
+                e.printStackTrace();
+                success = false;
+                try {
+                    jsonObject = new JSONObject(e.getBody());
+                    errorMessage = jsonObject.getString("message");
+                }catch (JSONException jsonE){
+                    jsonE.printStackTrace();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+
+            if(success){
+                ToastUtil.show(getActivity(), "successful");
+            }else{
+                ToastUtil.show(getActivity(),errorMessage);
+            }
+
+
         }
     }
 

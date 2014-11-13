@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,7 +18,13 @@ import android.widget.Toast;
 import com.kii.apis.ProgressDialogFragment;
 import com.kii.apis.R;
 import com.kii.apis.Utils;
+import com.kii.apis.formatCheck;
+import com.kii.cloud.storage.IdentityData;
 import com.kii.cloud.storage.KiiUser;
+import com.kii.cloud.storage.UserFields;
+import com.kii.cloud.storage.exception.app.AppException;
+
+import java.io.IOException;
 
 /**
  * Fragment for Uset Attribetes Page
@@ -39,7 +46,7 @@ public class UserAttributesFragment extends Fragment {
     TextView ageView;
     TextView passwordView;
     TextView oldpwdView;
-
+    EditText emailEdit;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.user_attributes, container, false);
@@ -58,8 +65,11 @@ public class UserAttributesFragment extends Fragment {
         ageView = (TextView) root.findViewById(R.id.age);
         passwordView = (TextView) root.findViewById(R.id.password);
         oldpwdView = (TextView) root.findViewById(R.id.old_password);
+        emailEdit = (EditText) root.findViewById(R.id.email);
+
         root.findViewById(R.id.save_button).setOnClickListener(mClickListener);
         root.findViewById(R.id.change_password).setOnClickListener(mClickListener);
+        root.findViewById(R.id.upload_email).setOnClickListener(mClickListener);
 
         return root;
     }
@@ -95,17 +105,25 @@ public class UserAttributesFragment extends Fragment {
             if (activity == null) { return; }
 
             switch (v.getId()) {
-            case R.id.change_password:
-                String password = passwordView.getText().toString();
-                if (!KiiUser.isValidPassword(password)) {
-                    Toast.makeText(activity, R.string.password_invalid, Toast.LENGTH_LONG).show();
-                    return;
-                }
-                new ChangePasswordTask(oldpwdView.getText().toString(), password).execute();
-                break;
-            case R.id.save_button:
-                new SaveInfoTask().execute();
-                break;
+                case R.id.change_password:
+                    String password = passwordView.getText().toString();
+                    if (!KiiUser.isValidPassword(password)) {
+                        Toast.makeText(activity, R.string.password_invalid, Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    new ChangePasswordTask(oldpwdView.getText().toString(), password).execute();
+                    break;
+                case R.id.save_button:
+                    new SaveInfoTask().execute();
+                    break;
+                case R.id.upload_email:
+                    if(!formatCheck.isEmail(emailEdit.getText().toString())){
+                        Toast.makeText(getActivity(),"please enter valid email address", Toast.LENGTH_SHORT).show();
+                    }else {
+                        new EmailUploadTask().execute();
+                    }
+                    break;
+
             }
         }
     };
@@ -199,6 +217,41 @@ public class UserAttributesFragment extends Fragment {
                 mUser.update();
                 mUser.refresh();
             } catch (Exception e) {
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog = ProgressDialogFragment.newInstance(getString(R.string.refreshing_status));
+            dialog.show(getFragmentManager(), "dialog");
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            dialog.dismiss();
+            updateInfo();
+        }
+    }
+
+    class EmailUploadTask extends AsyncTask<Void, Void, Void> {
+        ProgressDialogFragment dialog = null;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                IdentityData.Builder builder =
+                        IdentityData.Builder.newWithName(KiiUser.getCurrentUser().getUsername());
+                builder.withEmail(emailEdit.getText().toString());
+                IdentityData identityData = builder.build();
+                UserFields userFields = new UserFields();
+                KiiUser.getCurrentUser().update(identityData, userFields);
+            } catch (IOException e) {
+                // Something went wrong...
+            } catch (AppException e) {
+                // Something went wrong...
             }
             return null;
         }

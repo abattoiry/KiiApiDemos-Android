@@ -44,6 +44,8 @@
     <string name="login_with_phone">Login with phone</string>
     <string name="ua_email_phone">Username or email or phone</string>
     <string name="login">Login</string>
+    <string name="reset_password">reset password</string>
+    <string name="upload_email">upload email</string>
     <string name="no_token">There is no token saved</string>
     <string name="token_label">Token: %s</string>
     <string name="sign_in_already_login">You are currently logged in, sign in again will cause login as another user.</string>

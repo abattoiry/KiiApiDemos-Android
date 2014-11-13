@@ -16,7 +16,6 @@
             android:stretchColumns="1" >
 
             <TableRow>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -32,7 +31,6 @@
             </TableRow>
 
             <TableRow>
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,6 +81,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/change_password" />
-    </LinearLayout>
 
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="email"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"/>
+
+        <Button
+            android:id="@+id/upload_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/upload_email"/>
+
+    </LinearLayout>
 </ScrollView>
