@@ -153,6 +153,8 @@
 	<string name="login_with_twitter_account">Login with Twitter Account</string>
 	<string name="linking_a_kii_account_to_a_twitter_account">Linking a Kii Account to a Twitter Account</string>
 	<string name="unlinking_a_kii_account_from_a_twitter_account">Unlinking a Kii Account from a Twitter Account</string>
+    <string name="login_with_renren_account">login with renren account</string>
+    <string name="login_with_weibo_account">login with weibo account</string>
     <string name="social_network_integration_title">Social network integration</string>
     <string name="link_succ">Link successfully</string>
     <string name="link_failed">Link failed</string>

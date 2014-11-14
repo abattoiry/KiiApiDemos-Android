@@ -53,4 +53,21 @@
         android:onClick="onUnlinkTwitter"
         android:text="@string/unlinking_a_kii_account_from_a_twitter_account" />
 
+    <Button
+        android:id="@+id/ButtonLoginWithRenren"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onLoginWithRenren"
+        android:text="@string/login_with_renren_account"/>
+
+    <Button
+        android:id="@+id/ButtonLoginWithWeibo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onLoginWithWeibo"
+        android:text="@string/login_with_weibo_account"/>
+
+
 </LinearLayout>

@@ -19,7 +19,9 @@ import com.kii.apis.Utils;
 import com.kii.cloud.storage.Kii;
 import com.kii.cloud.storage.KiiUser;
 import com.kii.cloud.storage.callback.KiiSocialCallBack;
+import com.kii.cloud.storage.social.KiiFacebookConnect;
 import com.kii.cloud.storage.social.KiiSocialConnect;
+import com.kii.cloud.storage.social.connector.KiiSocialNetworkConnector;
 import com.kii.cloud.storage.social.twitter.KiiTwitterConnect;
 
 /**
@@ -47,8 +49,8 @@ public class SocialNetworkIntegrationFragment extends Fragment {
 
         int[] ids = {
                 R.id.ButtonLoginWithFacebook, R.id.ButtonLinkFacebook, R.id.buttonUnlinkFacebook,
-                R.id.ButtonLoginWithTwitter, R.id.buttonLinkTwitter, R.id.ButtonUnlinkTwitter
-
+                R.id.ButtonLoginWithTwitter, R.id.buttonLinkTwitter, R.id.ButtonUnlinkTwitter,
+                R.id.ButtonLoginWithRenren, R.id.ButtonLoginWithWeibo
         };
         for (int id : ids) {
             root.findViewById(id).setOnClickListener(mClickListener);
@@ -60,24 +62,29 @@ public class SocialNetworkIntegrationFragment extends Fragment {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-            case R.id.ButtonLoginWithFacebook:
-                onLoginWithFacebook();
-                break;
-            case R.id.ButtonLinkFacebook:
-                onLinkFacebook();
-                break;
-            case R.id.buttonUnlinkFacebook:
-                onUnlinkFacebook();
-                break;
-            case R.id.ButtonLoginWithTwitter:
-                onLoginWithTwitter();
-                break;
-            case R.id.buttonLinkTwitter:
-                onLinkTwitter();
-                break;
-            case R.id.ButtonUnlinkTwitter:
-                onUnlinkTwitter();
-                break;
+                case R.id.ButtonLoginWithFacebook:
+                    onLoginWithFacebook();
+                    break;
+                case R.id.ButtonLinkFacebook:
+                    onLinkFacebook();
+                    break;
+                case R.id.buttonUnlinkFacebook:
+                    onUnlinkFacebook();
+                    break;
+                case R.id.ButtonLoginWithTwitter:
+                    onLoginWithTwitter();
+                    break;
+                case R.id.buttonLinkTwitter:
+                    onLinkTwitter();
+                    break;
+                case R.id.ButtonUnlinkTwitter:
+                    onUnlinkTwitter();
+                    break;
+                case R.id.ButtonLoginWithRenren:
+                    onLoginWithRenren();
+                    break;
+                case R.id.ButtonLoginWithWeibo:
+                    onLoginWithWeibo();
             }
         }
     };
@@ -92,105 +99,107 @@ public class SocialNetworkIntegrationFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Activity activity = getActivity();
-        if (activity == null) { return true; }
+        if (activity == null) {
+            return true;
+        }
 
         switch (item.getItemId()) {
-        case R.id.action_code:
-            String title = getString(R.string.showcode_title, activity.getTitle());
-            String[] group = new String[] {
-                    getString(R.string.login_with_facebook_account),
-                    getString(R.string.linking_a_kii_account_to_a_facebook_account),
-                    getString(R.string.unlinking_a_kii_account_from_a_facebook_account),
-                    getString(R.string.login_with_twitter_account),
-                    getString(R.string.linking_a_kii_account_to_a_twitter_account),
-                    getString(R.string.unlinking_a_kii_account_from_a_twitter_account)
-            };
-            String[] child = new String[] {
-                    "Activity activity = this.getActivity();\r\n"
-                            + "KiiSocialConnect conn = Kii.socialConnect(SocialNetwork.FACEBOOK);\r\n"
-                            + "conn.initialize(\"__FB_APP_ID__\", null, null);\r\n"
-                            + "conn.logIn(activity, null, new KiiSocialCallBack(){\r\n"
-                            + "    @Override\r\n"
-                            + "    public void onLoginCompleted(SocialNetwork network, KiiUser user, Exception exception) {\r\n"
-                            + "        if (exception == null) {\r\n"
-                            + "            // Success.\r\n"
-                            + "        } else {\r\n"
-                            + "            // Failure. Handle error.\r\n"
-                            + "        }\r\n"
-                            + "    }\r\n"
-                            + "});",
-                    "Activity activity = this.getActivity();\r\n"
-                            + "KiiSocialConnect conn = Kii.socialConnect(SocialNetwork.FACEBOOK);\r\n"
-                            + "conn.initialize(\"__FB_APP_ID__\", null, null);\r\n"
-                            + "conn.link(activity, null, new KiiSocialCallBack(){\r\n"
-                            + "    @Override\r\n"
-                            + "    public void onLinkCompleted(SocialNetwork network, KiiUser user, Exception exception) {\r\n"
-                            + "        if (exception == null) {\r\n"
-                            + "            // Success.\r\n"
-                            + "        } else {\r\n"
-                            + "            // Failure. Handle error.\r\n"
-                            + "        }\r\n"
-                            + "    }\r\n"
-                            + "});",
-                    "Activity activity = this.getActivity();\r\n"
-                            + "KiiSocialConnect conn = Kii.socialConnect(SocialNetwork.FACEBOOK);\r\n"
-                            + "conn.initialize(\"__FB_APP_ID__\", null, null);\r\n"
-                            + "conn.unlink(activity, null, new KiiSocialCallBack(){\r\n"
-                            + "    @Override\r\n"
-                            + "    public void onUnLinkCompleted(SocialNetwork network, KiiUser user, Exception exception) {\r\n"
-                            + "        if (exception == null) {\r\n"
-                            + "            // Success.\r\n"
-                            + "        } else {\r\n"
-                            + "            // Failure. Handle error.\r\n"
-                            + "        }\r\n"
-                            + "    }\r\n"
-                            + "});",
-                    "Activity activity = this.getActivity();\r\n"
-                            + "KiiSocialConnect connect = Kii.socialConnect(SocialNetwork.TWITTER);\r\n"
-                            + "connect.initialize(\"__TWITTER_CONSUMER_KEY__\", \"__TWITTER_CONSUMER_SECRET__\", null);\r\n"
-                            + "connect.logIn(activity, null, new KiiSocialCallBack(){\r\n"
-                            + "    @Override\r\n"
-                            + "    public void onLoginCompleted(SocialNetwork network, KiiUser user, Exception exception) {\r\n"
-                            + "        if (exception == null) {\r\n"
-                            + "            // Success.\r\n"
-                            + "        } else {\r\n"
-                            + "            // Failure. Handle error.\r\n"
-                            + "        }\r\n"
-                            + "    }\r\n"
-                            + "});",
-                    "Activity activity = this.getActivity();\r\n"
-                            + "KiiSocialConnect connect = Kii.socialConnect(SocialNetwork.TWITTER);\r\n"
-                            + "connect.initialize(\"__TWITTER_CONSUMER_KEY__\", \"__TWITTER_CONSUMER_SECRET__\", null);\r\n"
-                            + "connect.link(activity, null, new KiiSocialCallBack(){\r\n"
-                            + "    @Override\r\n"
-                            + "    public void onLinkCompleted(SocialNetwork network, KiiUser user, Exception exception) {\r\n"
-                            + "        if (exception == null) {\r\n"
-                            + "            // Success.\r\n"
-                            + "        } else {\r\n"
-                            + "            // Failure. Handle error.\r\n"
-                            + "        }\r\n"
-                            + "    }\r\n"
-                            + "});" ,
-                    "Activity activity = this.getActivity();\r\n"
-                            + "KiiSocialConnect connect = Kii.socialConnect(SocialNetwork.TWITTER);\r\n"
-                            + "connect.initialize(\"__TWITTER_CONSUMER_KEY__\", \"__TWITTER_CONSUMER_SECRET__\", null);\r\n"
-                            + "connect.unlink(activity, null, new KiiSocialCallBack(){\r\n"
-                            + "    @Override\r\n"
-                            + "    public void onUnLinkCompleted(SocialNetwork network, KiiUser user, Exception exception) {\r\n"
-                            + "        if (exception == null) {\r\n"
-                            + "            // Success.\r\n"
-                            + "        } else {\r\n"
-                            + "            // Failure. Handle error.\r\n"
-                            + "        }\r\n"
-                            + "    }\r\n"
-                            + "});"
-            };
-            Intent intent = new Intent(activity, ShowCodeActivity.class);
-            intent.putExtra(ShowCodeActivity.EXTRA_TITLE, title);
-            intent.putExtra(ShowCodeActivity.EXTRA_GROUPS, group);
-            intent.putExtra(ShowCodeActivity.EXTRA_CHILD, child);
-            startActivity(intent);
-            break;
+            case R.id.action_code:
+                String title = getString(R.string.showcode_title, activity.getTitle());
+                String[] group = new String[]{
+                        getString(R.string.login_with_facebook_account),
+                        getString(R.string.linking_a_kii_account_to_a_facebook_account),
+                        getString(R.string.unlinking_a_kii_account_from_a_facebook_account),
+                        getString(R.string.login_with_twitter_account),
+                        getString(R.string.linking_a_kii_account_to_a_twitter_account),
+                        getString(R.string.unlinking_a_kii_account_from_a_twitter_account)
+                };
+                String[] child = new String[]{
+                        "Activity activity = this.getActivity();\r\n"
+                                + "KiiSocialConnect conn = Kii.socialConnect(SocialNetwork.FACEBOOK);\r\n"
+                                + "conn.initialize(\"__FB_APP_ID__\", null, null);\r\n"
+                                + "conn.logIn(activity, null, new KiiSocialCallBack(){\r\n"
+                                + "    @Override\r\n"
+                                + "    public void onLoginCompleted(SocialNetwork network, KiiUser user, Exception exception) {\r\n"
+                                + "        if (exception == null) {\r\n"
+                                + "            // Success.\r\n"
+                                + "        } else {\r\n"
+                                + "            // Failure. Handle error.\r\n"
+                                + "        }\r\n"
+                                + "    }\r\n"
+                                + "});",
+                        "Activity activity = this.getActivity();\r\n"
+                                + "KiiSocialConnect conn = Kii.socialConnect(SocialNetwork.FACEBOOK);\r\n"
+                                + "conn.initialize(\"__FB_APP_ID__\", null, null);\r\n"
+                                + "conn.link(activity, null, new KiiSocialCallBack(){\r\n"
+                                + "    @Override\r\n"
+                                + "    public void onLinkCompleted(SocialNetwork network, KiiUser user, Exception exception) {\r\n"
+                                + "        if (exception == null) {\r\n"
+                                + "            // Success.\r\n"
+                                + "        } else {\r\n"
+                                + "            // Failure. Handle error.\r\n"
+                                + "        }\r\n"
+                                + "    }\r\n"
+                                + "});",
+                        "Activity activity = this.getActivity();\r\n"
+                                + "KiiSocialConnect conn = Kii.socialConnect(SocialNetwork.FACEBOOK);\r\n"
+                                + "conn.initialize(\"__FB_APP_ID__\", null, null);\r\n"
+                                + "conn.unlink(activity, null, new KiiSocialCallBack(){\r\n"
+                                + "    @Override\r\n"
+                                + "    public void onUnLinkCompleted(SocialNetwork network, KiiUser user, Exception exception) {\r\n"
+                                + "        if (exception == null) {\r\n"
+                                + "            // Success.\r\n"
+                                + "        } else {\r\n"
+                                + "            // Failure. Handle error.\r\n"
+                                + "        }\r\n"
+                                + "    }\r\n"
+                                + "});",
+                        "Activity activity = this.getActivity();\r\n"
+                                + "KiiSocialConnect connect = Kii.socialConnect(SocialNetwork.TWITTER);\r\n"
+                                + "connect.initialize(\"__TWITTER_CONSUMER_KEY__\", \"__TWITTER_CONSUMER_SECRET__\", null);\r\n"
+                                + "connect.logIn(activity, null, new KiiSocialCallBack(){\r\n"
+                                + "    @Override\r\n"
+                                + "    public void onLoginCompleted(SocialNetwork network, KiiUser user, Exception exception) {\r\n"
+                                + "        if (exception == null) {\r\n"
+                                + "            // Success.\r\n"
+                                + "        } else {\r\n"
+                                + "            // Failure. Handle error.\r\n"
+                                + "        }\r\n"
+                                + "    }\r\n"
+                                + "});",
+                        "Activity activity = this.getActivity();\r\n"
+                                + "KiiSocialConnect connect = Kii.socialConnect(SocialNetwork.TWITTER);\r\n"
+                                + "connect.initialize(\"__TWITTER_CONSUMER_KEY__\", \"__TWITTER_CONSUMER_SECRET__\", null);\r\n"
+                                + "connect.link(activity, null, new KiiSocialCallBack(){\r\n"
+                                + "    @Override\r\n"
+                                + "    public void onLinkCompleted(SocialNetwork network, KiiUser user, Exception exception) {\r\n"
+                                + "        if (exception == null) {\r\n"
+                                + "            // Success.\r\n"
+                                + "        } else {\r\n"
+                                + "            // Failure. Handle error.\r\n"
+                                + "        }\r\n"
+                                + "    }\r\n"
+                                + "});",
+                        "Activity activity = this.getActivity();\r\n"
+                                + "KiiSocialConnect connect = Kii.socialConnect(SocialNetwork.TWITTER);\r\n"
+                                + "connect.initialize(\"__TWITTER_CONSUMER_KEY__\", \"__TWITTER_CONSUMER_SECRET__\", null);\r\n"
+                                + "connect.unlink(activity, null, new KiiSocialCallBack(){\r\n"
+                                + "    @Override\r\n"
+                                + "    public void onUnLinkCompleted(SocialNetwork network, KiiUser user, Exception exception) {\r\n"
+                                + "        if (exception == null) {\r\n"
+                                + "            // Success.\r\n"
+                                + "        } else {\r\n"
+                                + "            // Failure. Handle error.\r\n"
+                                + "        }\r\n"
+                                + "    }\r\n"
+                                + "});"
+                };
+                Intent intent = new Intent(activity, ShowCodeActivity.class);
+                intent.putExtra(ShowCodeActivity.EXTRA_TITLE, title);
+                intent.putExtra(ShowCodeActivity.EXTRA_GROUPS, group);
+                intent.putExtra(ShowCodeActivity.EXTRA_CHILD, child);
+                startActivity(intent);
+                break;
         }
         return true;
     }
@@ -203,17 +212,28 @@ public class SocialNetworkIntegrationFragment extends Fragment {
         activity.setTitle(R.string.social_network_integration_title);
     }
 
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == KiiTwitterConnect.REQUEST_CODE) {
+//            Kii.socialConnect(KiiSocialConnect.SocialNetwork.TWITTER).respondAuthOnActivityResult(
+//                    requestCode,
+//                    resultCode,
+//                    data);
+//        }
+//        else if(requestCode == KiiFacebookConnect.REQUEST_CODE){
+//            Kii.socialConnect(KiiSocialConnect.SocialNetwork.FACEBOOK).respondAuthOnActivityResult(
+//                    requestCode,
+//                    resultCode,
+//                    data);
+//
+//        }
+//    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == KiiTwitterConnect.REQUEST_CODE) {
-            Kii.socialConnect(KiiSocialConnect.SocialNetwork.TWITTER).respondAuthOnActivityResult(
-                    requestCode,
-                    resultCode,
-                    data);
-        }
-        else {
-            Kii.socialConnect(KiiSocialConnect.SocialNetwork.FACEBOOK).respondAuthOnActivityResult(
+        if (requestCode == KiiSocialNetworkConnector.REQUEST_CODE) {
+            Kii.socialConnect(KiiSocialConnect.SocialNetwork.SOCIALNETWORK_CONNECTOR).respondAuthOnActivityResult(
                     requestCode,
                     resultCode,
                     data);
@@ -370,6 +390,46 @@ public class SocialNetworkIntegrationFragment extends Fragment {
                     // Failure. handle error.
                     Toast.makeText(activity, R.string.unlink_failed,
                             Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public void onLoginWithRenren() {
+        Activity activity = this.getActivity();
+        KiiSocialConnect connect = Kii.socialConnect(KiiSocialConnect.SocialNetwork.SOCIALNETWORK_CONNECTOR);
+
+        Bundle options = new Bundle();
+        options.putParcelable("provider", KiiSocialNetworkConnector.Provider.RENREN);
+
+        // Login.
+        connect.logIn(activity, options, new KiiSocialCallBack() {
+            @Override
+            public void onLoginCompleted(KiiSocialConnect.SocialNetwork network, KiiUser user, Exception exception) {
+                if (exception == null) {
+                    // Success.
+                } else {
+                    // Failure. handle error.
+                }
+            }
+        });
+    }
+
+    public void onLoginWithWeibo(){
+        Activity activity = this.getActivity();
+        KiiSocialConnect connect = Kii.socialConnect(KiiSocialConnect.SocialNetwork.SOCIALNETWORK_CONNECTOR);
+
+        Bundle options = new Bundle();
+        options.putParcelable("provider", KiiSocialNetworkConnector.Provider.SINA);
+
+// Login.
+        connect.logIn(activity, options, new KiiSocialCallBack() {
+            @Override
+            public void onLoginCompleted(KiiSocialConnect.SocialNetwork network, KiiUser user, Exception exception) {
+                if (exception == null) {
+                    // Success.
+                } else {
+                    // Failure. handle error.
                 }
             }
         });

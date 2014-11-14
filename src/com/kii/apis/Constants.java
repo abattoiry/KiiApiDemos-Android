@@ -16,7 +16,7 @@ public class Constants {
     public static final String              KII_APP_KEY = "d04928d2f6a8766e82edb751501d2687";
     public static final Site                KII_SITE = Site.CN;
     public static final KiiAnalytics.Site   KII_ANALYTICS_SITE = KiiAnalytics.Site.CN;
-    public static final String              ABTestingID = "5cb0b720-e0be-11e3-ac8a-90b8d0235395";
+    public static final String              ABTestingID = "3e327130-6b01-11e4-ab1c-90b8d0235395";
     public static final String              ANALYTICS_EVENT_ID = "428";
     public static final String              ANALYTICS_AVG_SCORES_ID = "401";
 
